@@ -69,53 +69,34 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   updateTransform(scrollPosition: number) {
+    // all numbers are found and fixed with manual testing
     const scaleValue = 1.05 - (scrollPosition / 400) * (1.05 - 0.95) * 1.7
-    // const rotateValue = 14 - ((scrollPosition / 100) * 5.6)
-    const rotateValue = 11 - ((scrollPosition / 100) * 2.6)
-    const heightValue = 1020 - (scrollPosition / 100) * 150 //820
-    const marginTopValue = (scrollPosition / 100) * 85 //170
-    console.log("HEIGHT "+heightValue)
-    if (scaleValue <= 0.95) {
+    const rotateValue = 20 - ((scrollPosition / 100) * 7.2)
 
+
+    if (scaleValue <= 0.95) {
+      // fix scale and rotation values cause both reached limit
       if (rotateValue <= 0) {
         const transformValue = "scale(" + 0.95 + ") rotateX(" + 0 + "deg) " +
           "translateZ(0px)";
         const screenElement = this.el.nativeElement.querySelector('.screen');
         screenElement.style.transform = transformValue;
-        screenElement.style.height = 628 + "px";
-
         return
       }
-
+      // fix only scale since it reaches it's limit before rotation
       const transformValue = "scale(" + 0.95 + ") rotateX(" + rotateValue + "deg) " +
         "translateZ(0px)";
       const screenElement = this.el.nativeElement.querySelector('.screen');
       screenElement.style.transform = transformValue;
       return
     }
-    // if (rotateValue <= 0) {
-    //
-    //   const transformValue = "scale(" + scaleValue + ") rotateX(" + 0 + "deg) " +
-    //     "translateZ(0px)";
-    //   const screenElement = this.el.nativeElement.querySelector('.screen');
-    //   screenElement.style.transform = transformValue;
-    //
-    //   return
-    // }
-    // this.screenTransformCounter++
 
-    const scaleYValue = 1 / Math.cos(rotateValue * Math.PI / 180);
 
-    // console.log("SCROLL ")
     console.log(" SCROLLING " + scrollPosition)
-    // const transformValue = "scaleX(" + scaleValue + ") scaleY("+ scaleYValue.toFixed(2)+") rotateX(" + rotateValue + "deg) " +
-    //   "translateZ(0px)";
     const transformValue = "scale(" + scaleValue + ") rotateX(" + rotateValue + "deg) " +
       "translateZ(0px)";
     const screenElement = this.el.nativeElement.querySelector('.screen');
+    // apply transform value based on scrolling
     screenElement.style.transform = transformValue;
-    screenElement.style.height = heightValue + "px";
-    screenElement.style.marginTop = marginTopValue + "px";
-
   }
 }
