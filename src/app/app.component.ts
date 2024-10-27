@@ -1,13 +1,47 @@
 import {Component, ElementRef, inject, OnDestroy, OnInit, PLATFORM_ID, NgZone, HostListener} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {debounceTime, fromEvent, map, Subject, take, takeUntil, throttleTime} from "rxjs";
+import {IMAGE_CONFIG, IMAGE_LOADER, ImageLoader, ImageLoaderConfig, NgOptimizedImage} from "@angular/common";
+
+
+const myCustomLoader = (config: ImageLoaderConfig) => {
+  let url = config.src;
+  let queryParams = [];
+  if (config.width) {
+    queryParams.push(`w=${config.width}`);
+  }
+  if (config.loaderParams?.['roundedCorners']) {
+    queryParams.push('mask=corners&corner-radius=5');
+  }
+  return url + queryParams.join('&');
+};
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgOptimizedImage],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+
+
+  providers: [
+    {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        breakpoints: [380, 640, 1200, 1920, 2048, 3840],
+        placeholderResolution: 25
+      }
+    },
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => {
+        return `${config.src}`;
+      },
+    },
+  ],
+
+
+
 })
 export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
