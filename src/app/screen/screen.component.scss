@@ -99,6 +99,7 @@
   padding: 4rem 1.25rem;
   height: 100%;
   overflow: hidden;
+  transition: all .2s;
 }
 .cell{
   //background-color: red;
@@ -127,4 +128,8 @@
   border-radius: 7px;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.undersreencard{
+  padding-bottom: 10rem;
 }

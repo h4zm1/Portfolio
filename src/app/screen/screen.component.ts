@@ -2,13 +2,15 @@ import {Component, ElementRef, HostListener, inject, OnDestroy, OnInit, PLATFORM
 import {IMAGE_CONFIG, IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage} from "@angular/common";
 import {UnderscreenprojectsComponent} from "../underscreenprojects/underscreenprojects.component";
 import {fromEvent, map, Subject, takeUntil} from "rxjs";
+import {UnderscreencardComponent} from "../underscreencard/underscreencard.component";
 
 @Component({
   selector: 'app-screen',
   standalone: true,
   imports: [
     NgOptimizedImage,
-    UnderscreenprojectsComponent
+    UnderscreenprojectsComponent,
+    UnderscreencardComponent
   ],
   templateUrl: './screen.component.html',
   styleUrl: './screen.component.scss',
@@ -114,7 +116,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     }
 
 
-    // console.log(" SCROLLING " + scrollPosition)
+    console.log(" SCROLLING " + scaleValue + "ROTATION " + rotateValue)
     const transformValue = "scale(" + scaleValue + ") rotateX(" + rotateValue + "deg) " +
       "translateZ(0px)";
     const screenElement = this.el.nativeElement.querySelector('.screen');
@@ -122,11 +124,13 @@ export class ScreenComponent implements OnInit, OnDestroy {
     screenElement.style.transform = transformValue;
   }
 
+  // translate 'screenGrid' on the y axis like a small parallax effect
   updateTransformInnerContent(scrollPosition: number) {
     const translateValue = -scrollPosition * 0.25
+
     if (translateValue < -102)
       return
-    console.log(" TRANSLATE " + translateValue)
+    // console.log(" TRANSLATE " + translateValue)
     const transformValue = "scale(" + 1 + ") rotateX(" + 0 + "deg) " +
       "translateY(" + translateValue + "px)";
     const screenElement = this.el.nativeElement.querySelector('.screenGrid');
