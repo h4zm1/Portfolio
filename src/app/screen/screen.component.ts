@@ -18,7 +18,7 @@ import {UnderscreencardComponent} from "../underscreencard/underscreencard.compo
     {
       provide: IMAGE_CONFIG,
       useValue: {
-        breakpoints: [380, 640, 1200, 1920, 2048, 3840],
+        breakpoints: [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         placeholderResolution: 25
       }
     },
