@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({
@@ -11,7 +11,7 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './underscreenprojects.component.scss'
 })
 export class UnderscreenprojectsComponent implements AfterViewInit {
-  hasAnimated = false; // track if animation happened or not
+  hasAnimatedTitles = new Set<HTMLElement>(); // track titles that already been animated
 
   constructor(private el: ElementRef) {
   }
@@ -26,21 +26,40 @@ export class UnderscreenprojectsComponent implements AfterViewInit {
   }
 
   checkVisibility() {
-    if (this.hasAnimated) return // skip if already animated
+    const elements = this.el.nativeElement.querySelectorAll('.title'); // get the DOM element
 
-    const element = this.el.nativeElement.querySelector('.title'); // get the DOM element
-
-    if (!element || typeof element.getBoundingClientRect !== 'function') {
-      return;
+    if (!elements || elements.length === 0) {
+      return // exit if no element are found
     }
+    const elementsArray = Array.from<HTMLElement>(elements).filter(
+      (node) => node instanceof HTMLElement
+    )
 
-    const rect = element.getBoundingClientRect() // return element size and position relative to viewport
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0 // check if the element is inside viewport
+    console.warn('ERROR ELEMENT LENGTH :: ' + elements.length);
+    // console.log('*************************************Elements:', elements);
+    // console.log('Element:', element);
+    elementsArray.forEach((element: HTMLElement) => {
 
-    if (isVisible) {
-      this.animateLetters(element)
-      this.hasAnimated = true
-    }
+      // skip the title if it's already been animated
+      if (this.hasAnimatedTitles.has(element)) {
+        return
+      }
+      console.log('Element:', element);
+      console.log('Is HTMLElement:', element instanceof HTMLElement);
+      if (!(element instanceof HTMLElement)) {
+        console.warn('Skipping non-HTML element:', element);
+        return;
+      }
+      const rect = element.getBoundingClientRect() // return element size and position relative to viewport
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0 // check if the element is inside viewport
+
+      if (isVisible) {
+        this.animateLetters(element)
+        // mark title as animated to prevent re-animation
+        this.hasAnimatedTitles.add(element)
+      }
+    })
+
   }
 
   animateLetters(element: HTMLElement) {
