@@ -1,5 +1,12 @@
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  PLATFORM_ID
+} from '@angular/core';
+import {isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-underscreenprojects',
@@ -12,12 +19,16 @@ import {NgOptimizedImage} from "@angular/common";
 })
 export class UnderscreenprojectsComponent implements AfterViewInit {
   hasAnimatedTitles = new Set<HTMLElement>(); // track titles that already been animated
+  platformID = inject(PLATFORM_ID)
 
   constructor(private el: ElementRef) {
   }
 
   ngAfterViewInit() {
-    this.checkVisibility()
+    // there's no getBoundingClientRect on server side (will cause error), so limit the function call to client only
+    if (isPlatformBrowser(this.platformID)) {
+      this.checkVisibility()
+    }
   }
 
   @HostListener('window:scroll', [])
@@ -31,21 +42,13 @@ export class UnderscreenprojectsComponent implements AfterViewInit {
     if (!elements || elements.length === 0) {
       return // exit if no element are found
     }
-    const elementsArray = Array.from<HTMLElement>(elements).filter(
-      (node) => node instanceof HTMLElement
-    )
+    const elementsArray = Array.from<HTMLElement>(elements)
 
-    console.warn('ERROR ELEMENT LENGTH :: ' + elements.length);
-    // console.log('*************************************Elements:', elements);
-    // console.log('Element:', element);
     elementsArray.forEach((element: HTMLElement) => {
-
       // skip the title if it's already been animated
       if (this.hasAnimatedTitles.has(element)) {
         return
       }
-      console.log('Element:', element);
-      console.log('Is HTMLElement:', element instanceof HTMLElement);
       if (!(element instanceof HTMLElement)) {
         console.warn('Skipping non-HTML element:', element);
         return;

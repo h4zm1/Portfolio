@@ -7,7 +7,22 @@
 .underscreen {
   //background-color: gray;
 }
-
+.bgcolorholder{
+  position: relative;
+}
+.bgcolor{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(16px);
+  border-radius: 36px;
+  //transform: scale(0.99, 0.99);
+  opacity: .7;
+  background-image: radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent),
+  radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent),
+  radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent),
+  radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
+}
 .imageInsideScreen {
   display: block;
   width: 100%;
@@ -21,9 +36,12 @@
 }
 
 .projcontainer {
-  background-color: #121212;
-  padding-bottom: 2rem;
+  background-color: #000000;
+  //padding-bottom: 2rem;
   margin-bottom: 3rem;
+  border-radius: 38px;
+  position: relative;
+  padding: 2rem;
 }
 
 .proj-header {
@@ -49,9 +67,11 @@
   color: white;
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.5s ease;
+  font-size: 3rem;
+  font-weight: 700;
 
   &.visible {
-    opacity: 1;
+    opacity: 0.8;
   }
 
   span {
@@ -61,13 +81,21 @@
   }
 
   &.visible span {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 
-//h1{
-//  color: white;
-//}
+.disc {
+  font-size: .875rem;
+  color: #D4D4D4FF;
+}
+
+.date {
+  font-size: 1.125rem;
+  color: #E5E5E5FF;
+  font-weight: 700;
+}
+
 button {
   border-radius: 10px;
   cursor: default;
