@@ -7,10 +7,12 @@
 .underscreen {
   //background-color: gray;
 }
-.bgcolorholder{
+
+.bgcolorholder {
   position: relative;
 }
-.bgcolor{
+
+.bgcolor {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -23,6 +25,7 @@
   radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent),
   radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
 }
+
 .imageInsideScreen {
   display: block;
   width: 100%;
@@ -42,6 +45,8 @@
   border-radius: 38px;
   position: relative;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .proj-header {
@@ -108,6 +113,12 @@ button {
 .tags {
   display: flex;
   flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 2rem;
+}
+
+button {
+
 }
 
 .proj-content {
@@ -154,4 +165,26 @@ button {
 .squarecard:hover .carddisc,
 .rectanglecard:hover .carddisc {
   transform: translateX(10px);
+}
+.github-link{
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  display: block;
+  width: fit-content;
+  align-self: center;
+  padding-top: 2rem;
+}
+.link-content{
+  display: flex;
+  gap: .5rem;
+  border-radius: 1rem;
+  padding: .5rem 1rem;
+  background: linear-gradient(#000 0 0) padding-box, linear-gradient(to right,#d946ef, #06b6d4 ) border-box;
+  color: #fff;
+  border: 3px solid transparent;
+  align-items: center;
+}
+.link-content:hover{
+  background:  padding-box, linear-gradient(to right,#d946ef, #06b6d4 ) border-box;
 }
