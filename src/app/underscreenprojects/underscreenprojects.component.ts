@@ -70,12 +70,17 @@ export class UnderscreenprojectsComponent implements AfterViewInit {
     element.innerHTML = letter.map(letter => `<span>${letter}</span>`).join('') // wrap each letter in a span
 
     const spans = element.querySelectorAll('span')
-    spans.forEach((span: HTMLElement, index: number) => {
-      // apply styles into each letter
-      span.style.transitionDelay = `${index * 0.1}s`
-      span.style.opacity = '0'
+    const transitionDuration = 0.5; // duration of the fade in effect for each letter (in sec)
+    const overlapFactor = 0.2; // how much the letter trtansition overlap, so
+    // if 0.5 will make next letter appear half way then 0.2 will make it appear bit earlier
 
-      // delay to insure initial styles are applied
+    spans.forEach((span: HTMLElement, index: number) => {
+      span.style.opacity = '0' // letters will start invisible
+      span.style.transition = `opacity ${transitionDuration}s ease-in`; // fade in effect
+      span.style.transitionDelay = `${index * transitionDuration * overlapFactor}s` // ensure the next letter will
+      // start appearing before the current one finish appearing
+
+      // delay to ensure initial styles are applied
       setTimeout(() => {
         span.style.opacity = '1'
       }, 10)
