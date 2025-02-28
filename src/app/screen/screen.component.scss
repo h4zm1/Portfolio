@@ -1,20 +1,38 @@
-.screenContainer {
-  //background-color: #1e1e1e;
-  perspective: 1000px;
-  align-items: center;
-  flex-direction: column;
-  padding-bottom: 10rem;
-  padding-top: 10rem;
-  text-align: -webkit-center;
-  margin-top: 12.7rem;
-}
-
 .majorContainer {
   display: flex;
   flex-direction: column;
   background-color: black;
   width: -webkit-fill-available;
   align-items: center;
+  padding-top: 18rem;
+}
+.screenTitle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.firstLine{
+  font-size: 3rem;
+  font-weight: 600;
+}
+.secondLine{
+  font-size: 6rem;
+  font-weight: 700;
+  background-image: linear-gradient(to right,#2563eb, #22c55e,#818cf8 );
+  color: transparent;
+  background-clip: text;
+  margin-top: -24px;
+}
+.screenContainer {
+  //background-color: #1e1e1e;
+  perspective: 1000px;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 10rem;
+  //padding-top: 10rem;
+  text-align: -webkit-center;
+  //margin-top: 12.7rem;
+  margin-top: -75px;
 }
 .screenContentHolder{
   background-color: red;

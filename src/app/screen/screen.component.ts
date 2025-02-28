@@ -43,7 +43,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
 
     if (typeof window !== "undefined") {
       console.log("scroll position oninit " + this.getScrollPosition());
-      this.updateTransform(this.getScrollPosition())
+      this.updateTransformScreen(this.getScrollPosition())
       const scrollEvent = fromEvent(window, "scroll").pipe(
         // throttleTime(1000),
         // debounceTime(100),
@@ -54,8 +54,9 @@ export class ScreenComponent implements OnInit, OnDestroy {
       )
 
       scrollEvent.subscribe(scrollPosition => {
-        this.updateTransform(scrollPosition)
-        this.updateTransformInnerContent(scrollPosition)
+        this.updateTransformScreen(scrollPosition) // screen transform
+        this.updateTransformInnerContent(scrollPosition) // inner screen content transform
+        this.updateTransformTitle(scrollPosition) // top title transform
       })
 
     }
@@ -92,12 +93,14 @@ export class ScreenComponent implements OnInit, OnDestroy {
 
   // update the transform values (rotation and scale) of 'screen'
   // element/class based on the scrolling
-  updateTransform(scrollPosition: number) {
+  updateTransformScreen(scrollPosition: number) {
     // all numbers are found and fixed with manual testing
     const scaleValue = 1.05 - (scrollPosition / 400) * (1.05 - 0.95) * 1.7
-    const rotateValue = 20 - ((scrollPosition / 100) * 7.2)
+    const rotateValue = 20 - ((scrollPosition / 100) * 9.3)
+    const translateValue = -scrollPosition * -0.17
 
-
+    // scaleValue goes from 0.95 (when the screen is flat) to 1.05 (when the screen is tilted)
+    // the idea is to do not rotate/tilt the screen when scaleValue <= 0.95 (scrolling downward past the screen)
     if (scaleValue <= 0.95) {
       // fix scale and rotation values cause both reached limit
       if (rotateValue <= 0) {
@@ -116,9 +119,10 @@ export class ScreenComponent implements OnInit, OnDestroy {
     }
 
 
-    console.log(" SCROLLING " + scaleValue + "ROTATION " + rotateValue)
+    // console.log(" SCROLLING " + scaleValue + "ROTATION " + rotateValue)
+    console.log(" translate " + translateValue)
     const transformValue = "scale(" + scaleValue + ") rotateX(" + rotateValue + "deg) " +
-      "translateZ(0px)";
+      "translateZ(0px)" + "translateY(" + translateValue + "px)" ;
     const screenElement = this.el.nativeElement.querySelector('.screen');
     // apply transform value based on scrolling
     screenElement.style.transform = transformValue;
@@ -128,6 +132,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
   updateTransformInnerContent(scrollPosition: number) {
     const translateValue = -scrollPosition * 0.25
 
+    // limit content translation to this scrolling position
     if (translateValue < -102)
       return
     // console.log(" TRANSLATE " + translateValue)
@@ -137,4 +142,22 @@ export class ScreenComponent implements OnInit, OnDestroy {
     // apply transform value based on scrolling
     screenElement.style.transform = transformValue;
   }
+
+  //
+  updateTransformTitle(scrollPosition:number){
+    const translateValue = -scrollPosition * 0.44
+    // limit content translation to this scrolling position
+    if (translateValue < -102)
+      return
+
+    console.log(" TITLE--TRANSLATE " + translateValue)
+    const transformValue = "scale(" + 1 + ") rotateX(" + 0 + "deg) " +
+      "translateY(" + translateValue + "px)";
+    const titleElement = this.el.nativeElement.querySelector('.screenTitle');
+    // apply transform value based on scrolling
+    titleElement.style.transform = transformValue;
+
+
+  }
+
 }
