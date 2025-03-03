@@ -6,58 +6,70 @@
   align-items: center;
   padding-top: 18rem;
 }
-.screenTitle{
+
+.screenTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.firstLine{
+
+.firstLine {
   font-size: 3rem;
   font-weight: 600;
 }
-.secondLine{
+
+.secondLine {
   font-size: 6rem;
   font-weight: 700;
-  background-image: linear-gradient(to right,#2563eb, #22c55e,#818cf8 );
+  background-image: linear-gradient(to right, #2563eb, #22c55e, #818cf8);
   color: transparent;
   background-clip: text;
   margin-top: -24px;
 }
+
 .screenContainer {
   //background-color: #1e1e1e;
+
   perspective: 1000px;
   align-items: center;
   flex-direction: column;
   padding-bottom: 10rem;
   //padding-top: 10rem;
-  text-align: -webkit-center;
+  //text-align: -webkit-center;
   //margin-top: 12.7rem;
   margin-top: -75px;
 }
-.screenContentHolder{
-  background-color: red;
-  margin-bottom: 7rem;
-  width: 100%;
+
+.screenContentHolder {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  //margin-bottom: 7rem;
+  //width: 100%;
   height: 100%;
   overflow: hidden;
   border-radius: 25px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  //padding-top: .75rem;
+  font-weight: 600;
 }
 
 
-  .screen {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    border: solid;
-    border-color: #6c6c6c;
-    border-radius: 40px;
-    background-color: #111111;
-    //aspect-ratio: 16/9;
-    max-width: 61rem;
-    height: 38rem;
-    padding: 1.25rem;
-    width: 100%;
-  }
+.screen {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: solid;
+  border-color: #6c6c6c;
+  border-radius: 40px;
+  background-color: #111111;
+  //aspect-ratio: 16/9;
+  max-width: 61rem;
+  height: 38rem;
+  padding: 1.25rem;
+  width: 100%;
+}
 
 
 .screen::after { // there's a 1 pixel scrolling that happens after every page refresh, and using ::after pseudo element is the only that fixed this
@@ -82,8 +94,18 @@
   }
 }
 
-
-
+.screenHeader{
+  display: flex;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  border-color: rgb(156, 163, 175);
+  border-bottom-style: solid;
+  margin-bottom: .75rem;
+  color: rgb(17, 17, 17);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding-bottom: .25rem;
+}
 .other2 {
   //background-color: #f0e10b;
   width: 1000px;
@@ -105,52 +127,76 @@
     height: 27rem;
   }
 }
-.screenGrid{
+
+.screenGrid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-template-rows: 200px 200px;
+  //grid-template-rows: 200px 200px;
   /* height: 70vh; */
   /* grid-row-gap: 5vh; */
   background-color: #f5f5f5;
   gap: 1rem;
   //row-gap: 61px;
-  padding: 4rem 1.25rem;
-  height: 100%;
-  overflow: hidden;
+  //padding: 4rem 1.25rem;
+  //height: 100%;
+  //overflow: hidden;
   transition: all .2s;
+  margin-top: 3px;
 }
-.cell{
+
+.cell {
   //background-color: red;
   align-content: center;
   //border: solid;
   border-width: thin;
   //border-radius: 7px;
 }
-.imageDescContainer{
+a:hover, a:visited, a:link, a:active
+{
+  text-decoration: none;
+}
+.imageDescContainer {
 
 }
-.imageContainer{
+.project-title{
+  font-size: 15px;
+  color: rgb(17, 17, 17);
+  padding-top: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.imageContainer {
   display: flex;
 }
 
-.description{
-
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: .75rem;
+  line-height: 1rem;
+  color: #4B5563FF;
+  padding-left: 3px;
+  padding-right: 3px;
 }
-.imageInsideScreen{
+
+.imageInsideScreen {
   display: block;
   width: 100%;
   height: 100%;
   border-style: solid;
   border-width: 1px;
-  border-color: #363636;
+  border-color: #9CA3AFFF;
   border-radius: 7px;
   aspect-ratio: 1/1;
   object-fit: cover;
 }
 
-.undersreencard{
+.undersreencard {
   padding-bottom: 10rem;
 }
-.underscreenprojects{
+
+.underscreenprojects {
   max-width: 1024px;
 }
