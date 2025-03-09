@@ -7,7 +7,18 @@
     <div class="screen">
       <div class="screenContentHolder">
         <div class="screenHeader">
-          <div>Start by</div>
+          <div class="leftHeader"> Start by&nbsp;
+            <div class="word-container">
+            <!-- make a div for each letter, give it class "letter" and assign animation
+            state to each letter 'in', 'out', 'incoming' -->
+              <div *ngFor="let letter of displayedText; let i = index"
+                   class="letter"
+                   [@letterState]="letterStates[i]">
+                {{ letter }}
+              </div>
+            </div>
+          </div>
+
           <div>Linkedin</div>
         </div>
         <div class="screenGrid">
@@ -18,8 +29,10 @@
                 <img ngSrc="images/sp0.png" class="imageInsideScreen" placeholder width="500" height="500">
               </div>
               <div class="project-title">Signal Processing (Py)</div>
-              <div class="description">Signal processing tool designed to analyze and visualize mathematical functions and signals with
-                Matplotlib</div>
+              <div class="description">Signal processing tool designed to analyze and visualize mathematical functions
+                and signals with
+                Matplotlib
+              </div>
             </div>
           </a>
 
@@ -39,7 +52,9 @@
                 <img ngSrc="images/if.png" class="imageInsideScreen" placeholder width="500" height="500">
               </div>
               <div class="project-title">Smart Farming</div>
-              <div class="description">Dashboard editor with custom widgets and real-time data for smart farming sensors</div>
+              <div class="description">Dashboard editor with custom widgets and real-time data for smart farming
+                sensors
+              </div>
             </div>
           </a>
 
@@ -49,7 +64,8 @@
                 <img ngSrc="images/smart irrigation.png" class="imageInsideScreen" placeholder width="500" height="500">
               </div>
               <div class="project-title">Smart Irrigation</div>
-              <div class="description">App for predicting the evaporation of water based on temperature and humidity</div>
+              <div class="description">App for predicting the evaporation of water based on temperature and humidity
+              </div>
             </div>
           </a>
 
@@ -61,10 +77,10 @@
               <div class="project-title">School Management</div>
               <div class="description">school management app for
                 parents, staff, and teachers, to manage payments, contracts,
-                and students, using Jetpack Compose with Kotlin</div>
+                and students, using Jetpack Compose with Kotlin
+              </div>
             </div>
           </a>
-
 
 
           <a href="neon" class="cell">
@@ -94,7 +110,8 @@
               </div>
               <div class="project-title">Learning Space</div>
               <div class="description">A real-time object detection app with generated interactive quizzes with random
-                answers based on detected objects, featuring a scoring system for an engaging user experience</div>
+                answers based on detected objects, featuring a scoring system for an engaging user experience
+              </div>
             </div>
           </a>
 

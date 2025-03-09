@@ -1,8 +1,16 @@
 import {Component, ElementRef, HostListener, inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
-import {IMAGE_CONFIG, IMAGE_LOADER, ImageLoaderConfig, NgOptimizedImage} from "@angular/common";
+import {
+  IMAGE_CONFIG,
+  IMAGE_LOADER,
+  ImageLoaderConfig,
+  isPlatformBrowser,
+  NgForOf,
+  NgOptimizedImage
+} from "@angular/common";
 import {UnderscreenprojectsComponent} from "../underscreenprojects/underscreenprojects.component";
 import {fromEvent, map, Subject, takeUntil} from "rxjs";
 import {UnderscreencardComponent} from "../underscreencard/underscreencard.component";
+import {trigger, transition, style, animate, state} from '@angular/animations';
 
 @Component({
   selector: 'app-screen',
@@ -10,7 +18,8 @@ import {UnderscreencardComponent} from "../underscreencard/underscreencard.compo
   imports: [
     NgOptimizedImage,
     UnderscreenprojectsComponent,
-    UnderscreencardComponent
+    UnderscreencardComponent,
+    NgForOf
   ],
   templateUrl: './screen.component.html',
   styleUrl: './screen.component.scss',
@@ -29,19 +38,33 @@ import {UnderscreencardComponent} from "../underscreencard/underscreencard.compo
       },
     },
   ],
+  animations: [
+    trigger('letterState', [
+      state('in', style({transform: 'translateY(0)'})),
+      state('out', style({transform: 'translateY(-100%)'})),
+      state('incoming', style({transform: 'translateY(100%)'})),
+      transition('in => out', animate('300ms ease-out')),
+      transition('incoming => in', animate('300ms ease-in'))
+    ])
+  ],
 })
 export class ScreenComponent implements OnInit, OnDestroy {
+  private intervalId: any;
+  state = 'start';
+  firstWord = 'Clicking';
+  secondWord = 'Scrolling';
+  displayedText: string[] = [];
+  letterStates: string[] = [];
+  loopInterval: any;
+  currentWordIndex: number = 0;
+
   ngOnInit() {
-    // Restore scroll position
-    if (typeof window !== "undefined") {
+    if (isPlatformBrowser(this.platformID)) {
+      // reset scrolling position from localstorage
       const scrollPosition = localStorage.getItem('scrollPosition');
       if (scrollPosition) {
         window.scrollTo(0, parseInt(scrollPosition, 10));
       }
-    }
-
-
-    if (typeof window !== "undefined") {
       console.log("scroll position oninit " + this.getScrollPosition());
       this.updateTransformScreen(this.getScrollPosition())
       const scrollEvent = fromEvent(window, "scroll").pipe(
@@ -59,13 +82,87 @@ export class ScreenComponent implements OnInit, OnDestroy {
         this.updateTransformTitle(scrollPosition) // top title transform
       })
 
+      // displayedText will be like this ['C', 'L', 'I', 'C', 'K', 'I', 'N', 'G']
+      this.displayedText = this.firstWord.split('');
+      // and letterStates will be like this ['in','in','in','in','in','in','in','in']
+      this.letterStates = new Array(this.displayedText.length).fill('in');
+      // without restricting setInterval() to client side, the webpage will get timed out
+      // Start animation after a delay
+      setTimeout(() => this.startLoop(), 1000);
+    }
+  }
+
+  startLoop() {
+    // run the animation every 3 seconds
+    this.animateWordChange();
+    this.loopInterval = setInterval(() => {
+      this.animateWordChange();
+    }, 3000);
+  }
+
+  animateWordChange() {
+
+    // the idea is
+    // in => out: the letter move up and disappears
+    // out => incoming: the letter reset to the incoming position
+    // incoming => in: the letter move up into its final position
+    // switch words
+    //////////=== STEPS ===////////
+    // 1; first letter (i = 0)
+    //      animate 'C' out ('out' state)
+    //      replace 'C' with 'S' and animate it in ('incoming' and 'in' state)
+    //2;  second letter (i=1)
+    //      animate 'L' out ('out' state)
+    //.....
+
+    // determine the current and next word
+    const currentWord = this.currentWordIndex === 0 ? this.firstWord : this.secondWord;
+    const nextWord = this.currentWordIndex === 0 ? this.secondWord : this.firstWord;
+
+    const maxLength = Math.max(currentWord.length, nextWord.length);
+
+    // loop through each letter position
+    for (let i = 0; i < maxLength; i++) {
+      setTimeout(() => {
+        // step 1;; animate current letter out
+        this.letterStates[i] = 'out'; // this should trigger in => out animation
+
+        // step 2;; after it get out we replace it with new letter from the next word
+        setTimeout(() => { // delay to give time to for "out" letters to animate
+          this.displayedText[i] = nextWord[i];
+          this.letterStates[i] = 'incoming'; // trigger incoming => in animation, new letter move up from bellow
+
+          // step 3;; animate the new letter in
+          setTimeout(() => {
+            this.letterStates[i] = 'in'; // complete the animation with "in" (more like resting)
+          }, 200);
+        }, 200);
+      }, i * 200); // delay between the start of each letter's animation
+    }
+
+    // step 4;; toggle the current word index for the next animation
+    setTimeout(() => {
+      this.currentWordIndex = this.currentWordIndex === 0 ? 1 : 0; //
+    }, maxLength * 200); // total delay for all animations to complete (well not counting the 400ms for out+inc=>in)
+  }
+
+  clearTimer() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
     }
   }
 
   ngOnDestroy() {
-    // Save scroll position before leaving the page
-    if (typeof window !== "undefined") {
+    if (isPlatformBrowser(this.platformID)) {
+      // Save scroll position before leaving the page
       localStorage.setItem('scrollPosition', window.pageYOffset.toString());
+
+
+      // clear timer when component is destroyed
+      this.clearTimer();
+      if (this.loopInterval) {
+        clearInterval(this.loopInterval);
+      }
     }
     this.destroy.next()
     this.destroy.complete()
@@ -122,7 +219,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     // console.log(" SCROLLING " + scaleValue + "ROTATION " + rotateValue)
     console.log(" translate " + translateValue)
     const transformValue = "scale(" + scaleValue + ") rotateX(" + rotateValue + "deg) " +
-      "translateZ(0px)" + "translateY(" + translateValue + "px)" ;
+      "translateZ(0px)" + "translateY(" + translateValue + "px)";
     const screenElement = this.el.nativeElement.querySelector('.screen');
     // apply transform value based on scrolling
     screenElement.style.transform = transformValue;
@@ -144,7 +241,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
   }
 
   //
-  updateTransformTitle(scrollPosition:number){
+  updateTransformTitle(scrollPosition: number) {
     const translateValue = -scrollPosition * 0.44
     // limit content translation to this scrolling position
     if (translateValue < -102)

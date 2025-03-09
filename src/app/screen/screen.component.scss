@@ -106,6 +106,19 @@
   line-height: 1.5rem;
   padding-bottom: .25rem;
 }
+.leftHeader{
+  display: inherit;
+}
+.word-container {
+  display: flex;
+  height: 50px;
+  overflow: hidden;
+}
+.letter {
+  position: relative;
+  font-size: 24px;
+  margin: 0 2px;
+}
 .other2 {
   //background-color: #f0e10b;
   width: 1000px;
