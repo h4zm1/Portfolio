@@ -12,9 +12,8 @@
             <!-- make a div for each letter, give it class "letter" and assign animation
             state to each letter 'in', 'out', 'incoming' -->
               <div *ngFor="let letter of displayedText; let i = index"
-                   class="letter"
                    [@letterState]="letterStates[i]">
-                {{ letter }}
+                {{ letter.char }}
               </div>
             </div>
           </div>

@@ -40,20 +40,29 @@ import {trigger, transition, style, animate, state} from '@angular/animations';
   ],
   animations: [
     trigger('letterState', [
-      state('in', style({transform: 'translateY(0)'})),
-      state('out', style({transform: 'translateY(-100%)'})),
-      state('incoming', style({transform: 'translateY(100%)'})),
-      transition('in => out', animate('300ms ease-out')),
-      transition('incoming => in', animate('300ms ease-in'))
+      state('in', style({
+        transform: 'translateY(0) scale(1)',
+        filter: 'blur(0px)',
+      })),
+      state('out', style({
+        transform: 'translateY(-100%) scale(0.7)',
+        filter: 'blur(12px)',
+      })),
+      state('incoming', style({
+        transform: 'translateY(190%) scale(0.7)',
+        filter: 'blur(12px)',
+      })),
+      transition('in => out', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)')),
+      transition('incoming => in', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)'))
     ])
-  ],
+  ]
 })
 export class ScreenComponent implements OnInit, OnDestroy {
   private intervalId: any;
   state = 'start';
   firstWord = 'Clicking';
   secondWord = 'Scrolling';
-  displayedText: string[] = [];
+  displayedText: Array<{ char: string, id: number }> = [];
   letterStates: string[] = [];
   loopInterval: any;
   currentWordIndex: number = 0;
@@ -82,8 +91,10 @@ export class ScreenComponent implements OnInit, OnDestroy {
         this.updateTransformTitle(scrollPosition) // top title transform
       })
 
-      // displayedText will be like this ['C', 'L', 'I', 'C', 'K', 'I', 'N', 'G']
-      this.displayedText = this.firstWord.split('');
+      // displayedText will be like this [{'C',0}, {'L',0}, {'I',0}, {'C',0}...]
+        this.displayedText = Array(this.firstWord.length).fill('').map((_, i) =>
+          this.createLetterObj(this.firstWord[i], this.currentWordIndex)
+        );
       // and letterStates will be like this ['in','in','in','in','in','in','in','in']
       this.letterStates = new Array(this.displayedText.length).fill('in');
       // without restricting setInterval() to client side, the webpage will get timed out
@@ -99,8 +110,19 @@ export class ScreenComponent implements OnInit, OnDestroy {
       this.animateWordChange();
     }, 3000);
   }
-
+  // this's a fix to ensures that even if the same letter appears in both words at the same position,
+  // angular will see them as different objects cause they have different id values, triggering animatio properly
+  createLetterObj = (char: string, id: number) => {
+    return {
+      char: char || '',
+      id: id // this should be enough for angular to see it as different
+    };
+  };
   animateWordChange() {
+    // Determine current and next word
+    const currentWord = this.currentWordIndex === 0 ? this.firstWord : this.secondWord;
+    const nextWord = this.currentWordIndex === 0 ? this.secondWord : this.firstWord;
+    const maxLength = Math.max(currentWord.length, nextWord.length);
 
     // the idea is
     // in => out: the letter move up and disappears
@@ -109,41 +131,39 @@ export class ScreenComponent implements OnInit, OnDestroy {
     // switch words
     //////////=== STEPS ===////////
     // 1; first letter (i = 0)
-    //      animate 'C' out ('out' state)
-    //      replace 'C' with 'S' and animate it in ('incoming' and 'in' state)
-    //2;  second letter (i=1)
-    //      animate 'L' out ('out' state)
+    // animate 'C' out ('out' state)
+    // replace 'C' with 'S' and animate it in ('incoming' and 'in' state)
+    //2; second letter (i=1)
+    // animate 'L' out ('out' state)
     //.....
 
-    // determine the current and next word
-    const currentWord = this.currentWordIndex === 0 ? this.firstWord : this.secondWord;
-    const nextWord = this.currentWordIndex === 0 ? this.secondWord : this.firstWord;
-
-    const maxLength = Math.max(currentWord.length, nextWord.length);
-
-    // loop through each letter position
+    // animate each letter sequentially
     for (let i = 0; i < maxLength; i++) {
       setTimeout(() => {
         // step 1;; animate current letter out
-        this.letterStates[i] = 'out'; // this should trigger in => out animation
+        this.letterStates[i] = 'out';
 
         // step 2;; after it get out we replace it with new letter from the next word
-        setTimeout(() => { // delay to give time to for "out" letters to animate
-          this.displayedText[i] = nextWord[i];
-          this.letterStates[i] = 'incoming'; // trigger incoming => in animation, new letter move up from bellow
+        setTimeout(() => {
+          // create a new letter object from the next word
+          this.displayedText[i] = this.createLetterObj(
+            nextWord[i],
+            this.currentWordIndex
+          );
+          this.letterStates[i] = 'incoming';
 
           // step 3;; animate the new letter in
           setTimeout(() => {
-            this.letterStates[i] = 'in'; // complete the animation with "in" (more like resting)
-          }, 200);
-        }, 200);
-      }, i * 200); // delay between the start of each letter's animation
+            this.letterStates[i] = 'in';
+          }, 80);
+        }, 300);// delay to give time to for "out" letters to animate
+      }, i * 120);// delay between the start of each letter's animation
     }
 
     // step 4;; toggle the current word index for the next animation
     setTimeout(() => {
-      this.currentWordIndex = this.currentWordIndex === 0 ? 1 : 0; //
-    }, maxLength * 200); // total delay for all animations to complete (well not counting the 400ms for out+inc=>in)
+      this.currentWordIndex = this.currentWordIndex === 0 ? 1 : 0;
+    }, maxLength * 120); // total delay for all animations to complete (well not counting the 400ms for out+inc=>in)
   }
 
   clearTimer() {
