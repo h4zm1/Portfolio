@@ -17,6 +17,7 @@ $n: 60; // number of meteors
   $v: random(100) - 35; // left
   $h: random(350)* -1; // top
   $d: random(50)/10 + 2; // seconds
+
   .meteor-#{$i} {
     position: relative;
     top: $h + px;
@@ -39,12 +40,14 @@ $n: 60; // number of meteors
     }
   }
 }
+
 // controlling the disappearance of meteors
 @keyframes meteor {
   0% {
     transform: rotate(215deg) translateX(0);
     opacity: 1
   }
+
   60% {
     opacity: 1;
   }
@@ -59,14 +62,17 @@ $n: 60; // number of meteors
 .underscreencontainer {
   position: relative;
 }
-.innerCard{
+
+.innerCard {
   display: flex;
   position: relative;
   flex-direction: column;
 }
-a{
+
+a {
   align-self: center;
 }
+
 .gradientborder {
   background-image: linear-gradient(to right, #14b8a6, #3b82f6);
   width: 100%;
@@ -77,24 +83,28 @@ a{
   border-radius: 9999px;
   transform: scale(0.9, 0.75);
 }
-.mail{
+
+.mail {
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
 }
-.mailcontent{
+
+.mailcontent {
   display: flex;
   gap: .5rem;
   border-radius: 1.5rem;
   padding: .5rem 1rem;
-  background: linear-gradient(#000 0 0) padding-box, linear-gradient(to right,#d946ef, #06b6d4 ) border-box;
+  background: linear-gradient(#000 0 0) padding-box, linear-gradient(to right, #d946ef, #06b6d4) border-box;
   color: #fff;
   border: 3px solid transparent;
   align-items: center;
 }
-.mailcontent:hover{
-  background:  padding-box, linear-gradient(to right,#d946ef, #06b6d4 ) border-box;
+
+.mailcontent:hover {
+  background: padding-box, linear-gradient(to right, #d946ef, #06b6d4) border-box;
 }
+
 h1 {
   font-size: 4.5rem;
   line-height: 1;

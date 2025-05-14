@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import { Component, ElementRef, HostListener, inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import {
   IMAGE_CONFIG,
   IMAGE_LOADER,
@@ -7,10 +7,10 @@ import {
   NgForOf,
   NgOptimizedImage
 } from "@angular/common";
-import {UnderscreenprojectsComponent} from "../underscreenprojects/underscreenprojects.component";
-import {fromEvent, map, Subject, takeUntil} from "rxjs";
-import {UnderscreencardComponent} from "../underscreencard/underscreencard.component";
-import {trigger, transition, style, animate, state} from '@angular/animations';
+import { UnderscreenprojectsComponent } from "../underscreenprojects/underscreenprojects.component";
+import { fromEvent, map, Subject, takeUntil } from "rxjs";
+import { UnderscreencardComponent } from "../underscreencard/underscreencard.component";
+import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'app-screen',
@@ -66,6 +66,9 @@ export class ScreenComponent implements OnInit, OnDestroy {
   letterStates: string[] = [];
   loopInterval: any;
   currentWordIndex: number = 0;
+  maxScaleLimit = 0.95;
+  minScaleLimit = 1.05;
+  scale3 = false;
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformID)) {
@@ -92,14 +95,17 @@ export class ScreenComponent implements OnInit, OnDestroy {
       })
 
       // displayedText will be like this [{'C',0}, {'L',0}, {'I',0}, {'C',0}...]
-        this.displayedText = Array(this.firstWord.length).fill('').map((_, i) =>
-          this.createLetterObj(this.firstWord[i], this.currentWordIndex)
-        );
+      this.displayedText = Array(this.firstWord.length).fill('').map((_, i) =>
+        this.createLetterObj(this.firstWord[i], this.currentWordIndex)
+      );
       // and letterStates will be like this ['in','in','in','in','in','in','in','in']
       this.letterStates = new Array(this.displayedText.length).fill('in');
       // without restricting setInterval() to client side, the webpage will get timed out
       // Start animation after a delay
       setTimeout(() => this.startLoop(), 1000);
+      // set initial scale for "screen"
+      this.updateScaleLimit();
+      this.updateTransformScreen(window.scrollY) // screen transform
     }
   }
 
@@ -175,7 +181,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformID)) {
       // Save scroll position before leaving the page
-      localStorage.setItem('scrollPosition', window.pageYOffset.toString());
+      localStorage.setItem('scrollPosition', window.scrollY.toString());
 
 
       // clear timer when component is destroyed
@@ -194,6 +200,19 @@ export class ScreenComponent implements OnInit, OnDestroy {
     localStorage.setItem('scrollPosition', window.pageYOffset.toString());
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateScaleLimit();
+    this.updateTransformScreen(window.scrollY) // screen transform
+  }
+  updateScaleLimit() {
+    // update the scale limit based on screen width
+    this.minScaleLimit = window.innerWidth < 768 ? 0.8 : 0.95;
+    this.maxScaleLimit = window.innerWidth < 768 ? 0.95 : 1.05;
+    if (window.innerWidth <= 768) {
+      this.scale3 = true;
+    }
+  }
   title = 'Portfolio';
   platformID = inject(PLATFORM_ID)
   destroy = new Subject<void>();
@@ -212,23 +231,23 @@ export class ScreenComponent implements OnInit, OnDestroy {
   // element/class based on the scrolling
   updateTransformScreen(scrollPosition: number) {
     // all numbers are found and fixed with manual testing
-    const scaleValue = 1.05 - (scrollPosition / 400) * (1.05 - 0.95) * 1.7
+    const scaleValue = this.maxScaleLimit - (scrollPosition / 400) * (this.maxScaleLimit - this.minScaleLimit) * 1.7
     const rotateValue = 20 - ((scrollPosition / 100) * 9.3)
     const translateValue = -scrollPosition * -0.17
 
-    // scaleValue goes from 0.95 (when the screen is flat) to 1.05 (when the screen is tilted)
+    // scaleValue goes from 1.05 (when the screen is tilted (at the top of the site)) to 0.95 (when the screen is flat (scroll down))
     // the idea is to do not rotate/tilt the screen when scaleValue <= 0.95 (scrolling downward past the screen)
-    if (scaleValue <= 0.95) {
+    if (scaleValue <= this.minScaleLimit) {
       // fix scale and rotation values cause both reached limit
       if (rotateValue <= 0) {
-        const transformValue = "scale(" + 0.95 + ") rotateX(" + 0 + "deg) " +
+        const transformValue = "scale(" + this.minScaleLimit + ") rotateX(" + 0 + "deg) " +
           "translateZ(0px)";
         const screenElement = this.el.nativeElement.querySelector('.screen');
         screenElement.style.transform = transformValue;
         return
       }
       // fix only scale since it reaches it's limit before rotation
-      const transformValue = "scale(" + 0.95 + ") rotateX(" + rotateValue + "deg) " +
+      const transformValue = "scale(" + this.minScaleLimit + ") rotateX(" + rotateValue + "deg) " +
         "translateZ(0px)";
       const screenElement = this.el.nativeElement.querySelector('.screen');
       screenElement.style.transform = transformValue;
@@ -236,10 +255,10 @@ export class ScreenComponent implements OnInit, OnDestroy {
     }
 
 
-    // console.log(" SCROLLING " + scaleValue + "ROTATION " + rotateValue)
-    console.log(" translate " + translateValue)
+    console.log(" scaleValue " + scaleValue + "ROTATION " + rotateValue)
+    // console.log(" translate " + translateValue)
     const transformValue = "scale(" + scaleValue + ") rotateX(" + rotateValue + "deg) " +
-      "translateZ(0px)" + "translateY(" + translateValue + "px)";
+      "translateZ(0px)";
     const screenElement = this.el.nativeElement.querySelector('.screen');
     // apply transform value based on scrolling
     screenElement.style.transform = transformValue;
@@ -247,11 +266,21 @@ export class ScreenComponent implements OnInit, OnDestroy {
 
   // translate 'screenGrid' on the y axis like a small parallax effect
   updateTransformInnerContent(scrollPosition: number) {
-    const translateValue = -scrollPosition * 0.25
+    // scroll speed
+    var translateValue = -scrollPosition * 0.25
+
+    if (this.scale3) {
+      translateValue = -scrollPosition * 1.6
+      if (translateValue < -990)
+        return
+    } else {
+      if (translateValue < -202)
+        return
+
+    }
+
 
     // limit content translation to this scrolling position
-    if (translateValue < -102)
-      return
     // console.log(" TRANSLATE " + translateValue)
     const transformValue = "scale(" + 1 + ") rotateX(" + 0 + "deg) " +
       "translateY(" + translateValue + "px)";

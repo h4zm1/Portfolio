@@ -166,7 +166,8 @@ button {
 .rectanglecard:hover .carddisc {
   transform: translateX(10px);
 }
-.github-link{
+
+.github-link {
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
@@ -175,16 +176,28 @@ button {
   align-self: center;
   padding-top: 2rem;
 }
-.link-content{
+
+.link-content {
   display: flex;
   gap: .5rem;
   border-radius: 1rem;
   padding: .5rem 1rem;
-  background: linear-gradient(#000 0 0) padding-box, linear-gradient(to right,#d946ef, #06b6d4 ) border-box;
+  background: linear-gradient(#000 0 0) padding-box, linear-gradient(to right, #d946ef, #06b6d4) border-box;
   color: #fff;
   border: 3px solid transparent;
   align-items: center;
 }
-.link-content:hover{
-  background:  padding-box, linear-gradient(to right,#d946ef, #06b6d4 ) border-box;
+
+.link-content:hover {
+  background: padding-box, linear-gradient(to right, #d946ef, #06b6d4) border-box;
+}
+
+@media (max-width: 768px) {
+  .proj-content {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  // force rectangles to be squares on small screens
+  .rectanglecard{
+    grid-column: span 1 / span 1;
+  }
 }

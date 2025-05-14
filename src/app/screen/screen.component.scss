@@ -2,20 +2,33 @@
   display: flex;
   flex-direction: column;
   background-color: black;
-  width: -webkit-fill-available;
+  //width: 100%;
   align-items: center;
-  padding-top: 18rem;
+  //padding-top: 18rem;
+  padding: .5rem;
+}
+
+.topHalf {
+  display: flex;
+  min-height: 120vh;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+  justify-content: center;
+  margin-top: 4rem;
 }
 
 .screenTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: -4rem;
 }
 
 .firstLine {
   font-size: 3rem;
   font-weight: 600;
+  color: white;
 }
 
 .secondLine {
@@ -31,13 +44,15 @@
   //background-color: #1e1e1e;
 
   perspective: 1000px;
-  align-items: center;
-  flex-direction: column;
-  padding-bottom: 10rem;
+  // align-items: center;
+  // flex-direction: column;
+  // padding-bottom: 10rem;
   //padding-top: 10rem;
   //text-align: -webkit-center;
   //margin-top: 12.7rem;
-  margin-top: -75px;
+  // margin-top: -75px;
+  width: 100%;
+  // justify-items: center;
 }
 
 .screenContentHolder {
@@ -68,11 +83,12 @@
   max-width: 61rem;
   height: 38rem;
   padding: 1.25rem;
-  width: 100%;
+  // width: 80%;
 }
 
 
-.screen::after { // there's a 1 pixel scrolling that happens after every page refresh, and using ::after pseudo element is the only that fixed this
+.screen::after {
+  // there's a 1 pixel scrolling that happens after every page refresh, and using ::after pseudo element is the only that fixed this
   border-color: #6c6c6c;
   border-radius: 40px;
   background-color: #111111;
@@ -88,13 +104,35 @@
   z-index: -1;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .screen {
-    //height: 48rem;
+    height: 27.7rem;
+  }
+
+  .screenGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .topHalf {
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  .screenTitle {
+    margin-bottom: -2.9rem;
+  }
+
+  .firstLine {
+    font-size: 1.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .secondLine {
+    font-size: 2.25rem;
   }
 }
 
-.screenHeader{
+.screenHeader {
   display: flex;
   justify-content: space-between;
   border-bottom-width: 1px;
@@ -107,10 +145,12 @@
   padding-bottom: .25rem;
   padding-top: .75rem;
 }
-.leftHeader{
+
+.leftHeader {
   display: inherit;
   align-items: end;
 }
+
 .word-container {
   display: flex;
   //height: 50px;
@@ -119,11 +159,13 @@
   align-items: end;
 
 }
+
 .letter {
   position: relative;
   font-size: 1rem;
   margin: 0 2px;
 }
+
 .other2 {
   //background-color: #f0e10b;
   width: 1000px;
@@ -138,12 +180,13 @@
 
 @media only screen and (max-width: 587px) {
   .screenContainer {
-    margin-top: 8rem;
+    // margin-top: 8rem;
   }
-  .screen {
-    //width: 20rem;
-    height: 27rem;
-  }
+
+  // .screen {
+  //width: 20rem;
+  // height: 27rem;
+  // }
 }
 
 .screenGrid {
@@ -169,20 +212,24 @@
   border-width: thin;
   //border-radius: 7px;
 }
-a:hover, a:visited, a:link, a:active
-{
+
+a:hover,
+a:visited,
+a:link,
+a:active {
   text-decoration: none;
 }
-.imageDescContainer {
 
-}
-.project-title{
+.imageDescContainer {}
+
+.project-title {
   font-size: 15px;
   color: rgb(17, 17, 17);
   padding-top: 3px;
-  padding-left: 3px;
+  padding-left: 2px;
   padding-right: 3px;
 }
+
 .imageContainer {
   display: flex;
 }
@@ -217,4 +264,5 @@ a:hover, a:visited, a:link, a:active
 
 .underscreenprojects {
   max-width: 1024px;
+  width: -webkit-fill-available;
 }
