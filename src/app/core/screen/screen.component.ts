@@ -13,49 +13,48 @@ import { UnderscreencardComponent } from "../underscreencard/underscreencard.com
 import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
-  selector: 'app-screen',
-  standalone: true,
-  imports: [
-    NgOptimizedImage,
-    UnderscreenprojectsComponent,
-    UnderscreencardComponent,
-    NgForOf
-  ],
-  templateUrl: './screen.component.html',
-  styleUrl: './screen.component.scss',
-  providers: [
-    {
-      provide: IMAGE_CONFIG,
-      useValue: {
-        breakpoints: [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-        placeholderResolution: 25
-      }
-    },
-    {
-      provide: IMAGE_LOADER,
-      useValue: (config: ImageLoaderConfig) => {
-        return `${config.src}`;
-      },
-    },
-  ],
-  animations: [
-    trigger('letterState', [
-      state('in', style({
-        transform: 'translateY(0) scale(1)',
-        filter: 'blur(0px)',
-      })),
-      state('out', style({
-        transform: 'translateY(-100%) scale(0.7)',
-        filter: 'blur(12px)',
-      })),
-      state('incoming', style({
-        transform: 'translateY(190%) scale(0.7)',
-        filter: 'blur(12px)',
-      })),
-      transition('in => out', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)')),
-      transition('incoming => in', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)'))
-    ])
-  ]
+    selector: 'app-screen',
+    imports: [
+        NgOptimizedImage,
+        UnderscreenprojectsComponent,
+        UnderscreencardComponent,
+        NgForOf
+    ],
+    templateUrl: './screen.component.html',
+    styleUrl: './screen.component.scss',
+    providers: [
+        {
+            provide: IMAGE_CONFIG,
+            useValue: {
+                breakpoints: [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+                placeholderResolution: 25
+            }
+        },
+        {
+            provide: IMAGE_LOADER,
+            useValue: (config: ImageLoaderConfig) => {
+                return `${config.src}`;
+            },
+        },
+    ],
+    animations: [
+        trigger('letterState', [
+            state('in', style({
+                transform: 'translateY(0) scale(1)',
+                filter: 'blur(0px)',
+            })),
+            state('out', style({
+                transform: 'translateY(-100%) scale(0.7)',
+                filter: 'blur(12px)',
+            })),
+            state('incoming', style({
+                transform: 'translateY(190%) scale(0.7)',
+                filter: 'blur(12px)',
+            })),
+            transition('in => out', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)')),
+            transition('incoming => in', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)'))
+        ])
+    ]
 })
 export class ScreenComponent implements OnInit, OnDestroy {
   private intervalId: any;
@@ -68,7 +67,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
   currentWordIndex: number = 0;
   maxScaleLimit = 0.95;
   minScaleLimit = 1.05;
-  scale3 = false;
+  smallSize = false;
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformID)) {
@@ -210,7 +209,11 @@ export class ScreenComponent implements OnInit, OnDestroy {
     this.minScaleLimit = window.innerWidth < 768 ? 0.8 : 0.95;
     this.maxScaleLimit = window.innerWidth < 768 ? 0.95 : 1.05;
     if (window.innerWidth <= 768) {
-      this.scale3 = true;
+      this.smallSize = true;
+    }
+
+    if (window.innerWidth >= 768) {
+      this.smallSize = false;
     }
   }
   title = 'Portfolio';
@@ -269,7 +272,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     // scroll speed
     var translateValue = -scrollPosition * 0.25
 
-    if (this.scale3) {
+    if (this.smallSize) {
       translateValue = -scrollPosition * 1.6
       if (translateValue < -990)
         return

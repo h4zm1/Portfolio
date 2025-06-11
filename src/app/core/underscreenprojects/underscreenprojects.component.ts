@@ -6,16 +6,27 @@ import {
   inject,
   PLATFORM_ID
 } from '@angular/core';
-import {isPlatformBrowser, NgOptimizedImage} from "@angular/common";
+import { isPlatformBrowser, NgOptimizedImage } from "@angular/common";
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
+<<<<<<< Updated upstream:src/app/underscreenprojects/underscreenprojects.component.ts
+    selector: 'app-underscreenprojects',
+    imports: [
+        NgOptimizedImage
+    ],
+    templateUrl: './underscreenprojects.component.html',
+    styleUrl: './underscreenprojects.component.scss'
+=======
   selector: 'app-underscreenprojects',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatIconModule
   ],
   templateUrl: './underscreenprojects.component.html',
   styleUrl: './underscreenprojects.component.scss'
+>>>>>>> Stashed changes:src/app/core/underscreenprojects/underscreenprojects.component.ts
 })
 export class UnderscreenprojectsComponent implements AfterViewInit {
   hasAnimatedTitles = new Set<HTMLElement>(); // track titles that already been animated

@@ -6,6 +6,7 @@
 
 .underscreen {
   //background-color: gray;
+  margin-inline: 1.25rem;
 }
 
 .bgcolorholder {
@@ -21,9 +22,9 @@
   //transform: scale(0.99, 0.99);
   opacity: .7;
   background-image: radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent),
-  radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent),
-  radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent),
-  radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
+    radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent),
+    radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent),
+    radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
 }
 
 .imageInsideScreen {
@@ -117,9 +118,7 @@ button {
   margin-bottom: 2rem;
 }
 
-button {
-
-}
+button {}
 
 .proj-content {
   display: grid;
@@ -155,11 +154,18 @@ button {
   border-radius: .75rem;
 }
 
-.carddisc {
+.carddesc {
   color: white;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: .25rem;
   transition: transform 0.2s ease;
+  font-weight: 700;
+}
+
+.desc {
+  color: #d4d4d4;
+  font-weight: 400;
+  font-size: .75rem;
 }
 
 .squarecard:hover .carddisc,
@@ -196,8 +202,13 @@ button {
   .proj-content {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
   // force rectangles to be squares on small screens
-  .rectanglecard{
+  .rectanglecard {
     grid-column: span 1 / span 1;
   }
 }
