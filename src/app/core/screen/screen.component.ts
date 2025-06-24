@@ -4,7 +4,6 @@ import {
   IMAGE_LOADER,
   ImageLoaderConfig,
   isPlatformBrowser,
-  NgForOf,
   NgOptimizedImage
 } from "@angular/common";
 import { UnderscreenprojectsComponent } from "../underscreenprojects/underscreenprojects.component";
@@ -13,48 +12,47 @@ import { UnderscreencardComponent } from "../underscreencard/underscreencard.com
 import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
-    selector: 'app-screen',
-    imports: [
-        NgOptimizedImage,
-        UnderscreenprojectsComponent,
-        UnderscreencardComponent,
-        NgForOf
-    ],
-    templateUrl: './screen.component.html',
-    styleUrl: './screen.component.scss',
-    providers: [
-        {
-            provide: IMAGE_CONFIG,
-            useValue: {
-                breakpoints: [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-                placeholderResolution: 25
-            }
-        },
-        {
-            provide: IMAGE_LOADER,
-            useValue: (config: ImageLoaderConfig) => {
-                return `${config.src}`;
-            },
-        },
-    ],
-    animations: [
-        trigger('letterState', [
-            state('in', style({
-                transform: 'translateY(0) scale(1)',
-                filter: 'blur(0px)',
-            })),
-            state('out', style({
-                transform: 'translateY(-100%) scale(0.7)',
-                filter: 'blur(12px)',
-            })),
-            state('incoming', style({
-                transform: 'translateY(190%) scale(0.7)',
-                filter: 'blur(12px)',
-            })),
-            transition('in => out', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)')),
-            transition('incoming => in', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)'))
-        ])
-    ]
+  selector: 'app-screen',
+  imports: [
+    NgOptimizedImage,
+    UnderscreenprojectsComponent,
+    UnderscreencardComponent,
+  ],
+  templateUrl: './screen.component.html',
+  styleUrl: './screen.component.scss',
+  providers: [
+    {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        breakpoints: [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+        placeholderResolution: 25
+      }
+    },
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => {
+        return `${config.src}`;
+      },
+    },
+  ],
+  animations: [
+    trigger('letterState', [
+      state('in', style({
+        transform: 'translateY(0) scale(1)',
+        filter: 'blur(0px)',
+      })),
+      state('out', style({
+        transform: 'translateY(-100%) scale(0.7)',
+        filter: 'blur(12px)',
+      })),
+      state('incoming', style({
+        transform: 'translateY(190%) scale(0.7)',
+        filter: 'blur(12px)',
+      })),
+      transition('in => out', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)')),
+      transition('incoming => in', animate('800ms cubic-bezier(0.9, 0, 0.1, 1)'))
+    ])
+  ]
 })
 export class ScreenComponent implements OnInit, OnDestroy {
   private intervalId: any;

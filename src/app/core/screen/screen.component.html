@@ -13,12 +13,11 @@
               <div class="word-container">
                 <!-- make a div for each letter, give it class "letter" and assign animation
             state to each letter 'in', 'out', 'incoming' -->
-                <div
-                  *ngFor="let letter of displayedText; let i = index"
-                  [@letterState]="letterStates[i]"
-                >
-                  {{ letter.char }}
-                </div>
+                @for (letter of displayedText; track $index) {
+                  <div [@letterState]="letterStates[$index]">
+                    {{ letter.char }}
+                  </div>
+                }
               </div>
             </div>
 

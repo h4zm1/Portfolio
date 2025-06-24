@@ -27,6 +27,8 @@
     radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
 }
 
+
+
 .imageInsideScreen {
   display: block;
   width: 100%;
@@ -91,7 +93,7 @@
   }
 }
 
-.disc {
+.desc {
   font-size: .875rem;
   color: #D4D4D4FF;
 }
@@ -154,10 +156,18 @@ button {}
   border-radius: .75rem;
 }
 
+.mat-icon {
+  color: #737373;
+  width: 1rem;
+  height: 1rem;
+  overflow: unset;
+  margin-top: 1rem;
+}
+
 .carddesc {
   color: white;
-  margin-top: 2rem;
-  margin-bottom: .25rem;
+  margin-top: .25rem;
+  margin-bottom: .5rem;
   transition: transform 0.2s ease;
   font-weight: 700;
 }
@@ -168,10 +178,15 @@ button {}
   font-size: .75rem;
 }
 
-.squarecard:hover .carddisc,
-.rectanglecard:hover .carddisc {
+.under-image {
+  transition: transform 0.2s ease;
+}
+
+.squarecard:hover .under-image,
+.rectanglecard:hover .under-image {
   transform: translateX(10px);
 }
+
 
 .github-link {
   background-color: transparent;
