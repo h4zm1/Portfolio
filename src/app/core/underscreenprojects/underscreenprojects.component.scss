@@ -95,7 +95,7 @@
 
 .desc {
   font-size: .875rem;
-  color: #D4D4D4FF;
+  color: #D4D4D4;
 }
 
 .date {
@@ -172,7 +172,7 @@ button {}
   font-weight: 700;
 }
 
-.desc {
+.image-desc {
   color: #d4d4d4;
   font-weight: 400;
   font-size: .75rem;
@@ -180,6 +180,8 @@ button {}
 
 .under-image {
   transition: transform 0.2s ease;
+  padding-bottom: .5rem;
+  padding-inline: .3rem;
 }
 
 .squarecard:hover .under-image,
