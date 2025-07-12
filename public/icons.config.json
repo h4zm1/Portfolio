@@ -4,9 +4,9 @@
   "firefox": "icons/firefox.svg",
   "browser": "icons/browser.svg",
   "ui": "icons/brush.svg",
-  "calandar": "icons/calandar.svg",
+  "calendar": "icons/calendar.svg",
   "upload": "icons/camera-up.svg",
-  "cloud": "icons/cloud-raid.svg",
+  "cloud": "icons/cloud-rain.svg",
   "device": "icons/device.svg",
   "gamepad": "icons/gamepad.svg",
   "devices": "icons/devices.svg",
@@ -21,5 +21,10 @@
   "school": "icons/school.svg",
   "store": "icons/store.svg",
   "setting": "icons/settings-pin.svg",
-  "options": "icons/table-options.svg"
+  "options": "icons/table-options.svg",
+  "signal": "icons/signal.svg",
+  "window": "icons/window.svg",
+  "windows": "icons/windows.svg",
+  "layout": "icons/layout.svg",
+  "puzzle": "icons/puzzle.svg"
 }
