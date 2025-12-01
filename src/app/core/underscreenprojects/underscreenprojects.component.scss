@@ -22,11 +22,10 @@
   //transform: scale(0.99, 0.99);
   opacity: .7;
   background-image: radial-gradient(circle farthest-side at 0 100%, #00ccb1, transparent),
-    radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent),
-    radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent),
-    radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
+  radial-gradient(circle farthest-side at 100% 0, #7b61ff, transparent),
+  radial-gradient(circle farthest-side at 100% 100%, #ffc414, transparent),
+  radial-gradient(circle farthest-side at 0 0, #1ca0fb, #141316);
 }
-
 
 
 .imageInsideScreen {
@@ -120,7 +119,8 @@ button {
   margin-bottom: 2rem;
 }
 
-button {}
+button {
+}
 
 .proj-content {
   display: grid;
@@ -145,6 +145,9 @@ button {}
   border: 1px solid #FFFFFF33;
   padding: .375rem;
   border-radius: .75rem;
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
 }
 
 .rectanglecard {
@@ -154,6 +157,31 @@ button {}
   border: 1px solid #FFFFFF33;
   padding: .375rem;
   border-radius: .75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.blur-bg {
+  position: absolute;
+  inset: 26px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) saturate(5.5);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.contentimage {
+  position: relative;
+  z-index: 1;
+  border-radius: .5rem;
+  width: 100%;
+  //height: auto;
+}
+
+.under-image {
+  position: relative;
+  z-index: 1;
 }
 
 .mat-icon {

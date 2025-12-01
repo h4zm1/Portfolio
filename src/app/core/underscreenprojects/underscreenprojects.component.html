@@ -1,9 +1,87 @@
 <div class="underscreen">
+
+  <div class="bgcolorholder">
+    <div class="bgcolor"></div>
+    <div class="projcontainer" id="wow events">
+      <div class="proj-header">
+        <img ngSrc="images/wow events.png" class="titleimage" placeholder width="500" height="500"/>
+        <div class="title">WoW Event Calendar</div>
+      </div>
+      <p class="date">2023 - 2025</p>
+      <p class="desc">
+        Never miss a raid reset again. Track TWoW server events with filtering, dark mode, and (with request) admin
+        configuration.
+      </p>
+      <div class="tags">
+        <button>Spring Boot</button>
+        <button>Spring Security</button>
+        <button>Kotlin</button>
+        <button>Postgresql</button>
+        <button>Angular</button>
+        <button>Angular Material</button>
+        <!--        <button>HTMX</button>-->
+        <!--        <button>Docker</button>-->
+        <button>Supabase</button>
+        <button>JUnit</button>
+      </div>
+      <div class="proj-content">
+        <div class="rectanglecard">
+          <div class="blur-bg" [style.background-image]="'url(images/tc1.png)'"></div>
+
+          <img ngSrc="images/tc1.png" class="contentimage" placeholder width="500" height="500"/>
+          <div class="under-image">
+            <mat-icon svgIcon="calendar"></mat-icon>
+            <div class="carddesc">Event Tracking Timeline</div>
+            <div class="image-desc">Main dashboard displaying the event timeline, dark mode toggle, and filters</div>
+          </div>
+        </div>
+        <div class="squarecard">
+          <div class="blur-bg" [style.background-image]="'url(images/tc2.png)'"></div>
+
+          <img ngSrc="images/tc2.png" class="contentimage" placeholder width="500" height="500"/>
+          <div class="under-image">
+            <mat-icon svgIcon="school"></mat-icon>
+            <div class="carddesc">Want access to config?</div>
+            <div class="image-desc">You will get an email when access is granted</div>
+          </div>
+        </div>
+        <div class="squarecard">
+          <div class="blur-bg" [style.background-image]="'url(images/tc4.png)'"></div>
+          <img ngSrc="images/tc4.png" class="contentimage" placeholder width="500" height="500"/>
+          <div class="under-image">
+            <mat-icon svgIcon="school"></mat-icon>
+            <div class="carddesc">ZG enchants with receipts</div>
+            <div class="image-desc">Every enchant documented, no guesswork needed</div>
+          </div>
+        </div>
+        <div class="rectanglecard">
+          <div class="blur-bg" [style.background-image]="'url(images/tc0.png)'"></div>
+          <img ngSrc="images/tc0.png" class="contentimage" placeholder width="500" height="500"/>
+          <div class="under-image">
+            <mat-icon svgIcon="calendar"></mat-icon>
+            <div class="carddesc">Admin controls</div>
+            <div class="image-desc">Reset times and roles, all in one place</div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="github-link" href="https://github.com/h4zm1/NgEverlook-Calendar">
+        <div class="link-content">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <use href="#gitlink"></use>
+          </svg>
+          Github
+        </div>
+      </a>
+    </div>
+  </div>
   <div class="bgcolorholder">
     <div class="bgcolor"></div>
     <div class="projcontainer" id="sp">
       <div class="proj-header">
-        <img ngSrc="images/sp0.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/sp0.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">Signal Processing (Python)</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -18,7 +96,8 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/sp2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/sp2.png)'"></div>
+          <img ngSrc="images/sp2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="graph"></mat-icon>
             <div class="carddesc">Preview chart</div>
@@ -26,7 +105,10 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/sp1.png" class="contentimage" placeholder width="500" height="500" />
+          <!-- Blur background layer -->
+          <div class="blur-bg" [style.background-image]="'url(images/sp1.png)'"></div>
+
+          <img ngSrc="images/sp1.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="function"></mat-icon>
             <div class="carddesc">Highly customizable</div>
@@ -35,10 +117,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/Signal-Processing">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -51,7 +133,7 @@
     <div class="bgcolor"></div>
     <div class="projcontainer" id="bcode">
       <div class="proj-header">
-        <img ngSrc="images/bcode.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/bcode.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">Barcode Detector</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -65,7 +147,9 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/bc2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bc2.png)'"></div>
+
+          <img ngSrc="images/bc2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="upload"></mat-icon>
 
@@ -77,7 +161,8 @@
         </div>
 
         <div class="rectanglecard">
-          <img ngSrc="images/bc5.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bc5.png)'"></div>
+          <img ngSrc="images/bc5.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="ui"></mat-icon>
             <div class="carddesc">Simple and clear ui</div>
@@ -89,10 +174,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/Barcode-Detector">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -105,7 +190,7 @@
     <div class="bgcolor"></div>
     <div class="projcontainer" id="smart agri">
       <div class="proj-header">
-        <img ngSrc="images/if.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/if.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">Smart farming</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -121,14 +206,21 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/sa2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/sa2.png)'"></div>
+
+          <img ngSrc="images/sa2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="layout"></mat-icon>
             <div class="carddesc">Customizable dashboard</div>
+            <div class="image-desc">
+              Multiple dashboards with different widgets
+            </div>
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/sa3.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/sa3.png)'"></div>
+
+          <img ngSrc="images/sa3.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="signal"></mat-icon>
             <div class="carddesc">Selecting new widget based on a sensor</div>
@@ -139,7 +231,9 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/sa4.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/sa4.png)'"></div>
+
+          <img ngSrc="images/sa4.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="options"></mat-icon>
             <div class="carddesc">Multipage dashboard</div>
@@ -149,7 +243,9 @@
           </div>
         </div>
         <div class="squarecard">
-          <img ngSrc="images/sa1.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/sa1.png)'"></div>
+
+          <img ngSrc="images/sa1.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="device"></mat-icon>
             <div class="carddesc">Different types for widgets</div>
@@ -157,10 +253,10 @@
           </div>
         </div>
       </div>
-      <a class="github-link">
+      <a class="github-link"  href="https://github.com/h4zm1/Smart-farming">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -173,7 +269,7 @@
     <div class="bgcolor"></div>
     <div class="projcontainer" id="smart irrigation">
       <div class="proj-header">
-        <img ngSrc="images/smart irrigation.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/smart irrigation.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">Smart Irrigation</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -191,7 +287,9 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/si2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/si2.png)'"></div>
+
+          <img ngSrc="images/si2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="plant"></mat-icon>
             <div class="carddesc">Plant identification system</div>
@@ -199,7 +297,9 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/si1.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/si1.png)'"></div>
+
+          <img ngSrc="images/si1.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="cloud"></mat-icon>
             <div class="carddesc">How much water left in the soil</div>
@@ -211,10 +311,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/IrrigationIntelligente">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -227,7 +327,7 @@
     <div class="bgcolor"></div>
     <div class="projcontainer" id="bschool">
       <div class="proj-header">
-        <img ngSrc="images/bschool.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/bschool.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">School Management App</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -244,7 +344,9 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/bs2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bs2.png)'"></div>
+
+          <img ngSrc="images/bs2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="school"></mat-icon>
             <div class="carddesc">Clean and simple UI</div>
@@ -252,7 +354,9 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/bs1.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bs1.png)'"></div>
+
+          <img ngSrc="images/bs1.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="calendar"></mat-icon>
             <div class="carddesc">Date-based notes and events</div>
@@ -260,7 +364,9 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/bs4.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bs4.png)'"></div>
+
+          <img ngSrc="images/bs4.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="graph"></mat-icon>
             <div class="carddesc">Robust API design</div>
@@ -271,15 +377,19 @@
           </div>
         </div>
         <div class="squarecard">
-          <img ngSrc="images/bs6.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bs6.png)'"></div>
+
+          <img ngSrc="images/bs6.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="people"></mat-icon>
-            <div class="carddesc">detailed user creation menu</div>
+            <div class="carddesc">Detailed user creation menu</div>
             <div class="image-desc">From gov ID to associated bank</div>
           </div>
         </div>
         <div class="squarecard">
-          <img ngSrc="images/bs7.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bs7.png)'"></div>
+
+          <img ngSrc="images/bs7.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="message"></mat-icon>
             <div class="carddesc">Built-in chat system</div>
@@ -287,7 +397,9 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/bs3.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/bs3.png)'"></div>
+
+          <img ngSrc="images/bs3.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="ui"></mat-icon>
             <div class="carddesc">
@@ -300,10 +412,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/School-Management-App">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -312,117 +424,12 @@
     </div>
   </div>
 
-  <div class="bgcolorholder">
-    <div class="bgcolor"></div>
-    <div class="projcontainer" id="portfolio">
-      <div class="proj-header">
-        <img ngSrc="images/portfolio.png" class="titleimage-withbg" placeholder width="500" height="500" />
-        <div class="title">Hazmi's Portfolio</div>
-      </div>
-      <p class="date">2023 - 2024</p>
-      <p class="desc">You are looking at it right now</p>
-      <div class="tags">
-        <button>Angular</button>
-        <button>Angular Material</button>
-      </div>
-      <div class="proj-content"></div>
-
-      <a class="github-link">
-        <div class="link-content">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <use href="#gitlink"></use>
-          </svg>
-          Github
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="bgcolorholder">
-    <div class="bgcolor"></div>
-    <div class="projcontainer" id="neon">
-      <div class="proj-header">
-        <img ngSrc="images/neon vs theme.jpg" class="titleimage" placeholder width="500" height="500" />
-        <div class="title">Cyberpunk theme</div>
-      </div>
-      <p class="date">2023 - 2024</p>
-      <p class="desc">Neon dark theme for visual studio 2019-22</p>
-      <div class="tags">
-        <button>Visual Studio theme</button>
-        <button>XML</button>
-      </div>
-      <div class="proj-content">
-        <div class="squarecard">
-          <img ngSrc="images/cp2.png" class="contentimage" placeholder width="500" height="500" />
-          <div class="under-image">
-            <mat-icon svgIcon="store"></mat-icon>
-            <div class="carddesc">One of the top rated themes</div>
-          </div>
-        </div>
-        <div class="rectanglecard">
-          <img ngSrc="images/cp4.png" class="contentimage" placeholder width="500" height="500" />
-          <div class="under-image">
-            <mat-icon svgIcon="browser"></mat-icon>
-            <div class="carddesc">Available on visual studio marketplace</div>
-          </div>
-        </div>
-      </div>
-
-      <a class="github-link">
-        <div class="link-content">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <use href="#gitlink"></use>
-          </svg>
-          Github
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="bgcolorholder">
-    <div class="bgcolor"></div>
-    <div class="projcontainer" id="wow events">
-      <div class="proj-header">
-        <img ngSrc="images/wow events.png" class="titleimage" placeholder width="500" height="500" />
-        <div class="title">WoW Event Calendar</div>
-      </div>
-      <p class="date">2023 - 2024</p>
-      <p class="desc">
-        A simple yet dynamic event tracker for World of Warcraft
-      </p>
-      <div class="tags">
-        <button>Spring Boot</button>
-        <button>Spring Security</button>
-        <button>Kotlin</button>
-        <button>Postgresql</button>
-        <button>Angular</button>
-        <button>Angular Material</button>
-        <button>HTMX</button>
-        <button>Docker</button>
-        <button>Supabase</button>
-        <button>JUnit</button>
-      </div>
-      <div class="proj-content"></div>
-
-      <a class="github-link">
-        <div class="link-content">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <use href="#gitlink"></use>
-          </svg>
-          Github
-        </div>
-      </a>
-    </div>
-  </div>
 
   <div class="bgcolorholder">
     <div class="bgcolor"></div>
     <div class="projcontainer" id="learning space">
       <div class="proj-header">
-        <img ngSrc="images/ls0.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/ls0.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">Learning Space</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -439,7 +446,9 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/ls2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/ls2.png)'"></div>
+
+          <img ngSrc="images/ls2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="devices"></mat-icon>
             <div class="carddesc">Detect. Quiz. Panic. Repeat</div>
@@ -447,7 +456,8 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/ls3.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/ls3.png)'"></div>
+          <img ngSrc="images/ls3.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="code"></mat-icon>
             <div class="carddesc">Under the hood</div>
@@ -456,10 +466,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/LSAPP">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -472,7 +482,7 @@
     <div class="bgcolor"></div>
     <div class="projcontainer" id="luna">
       <div class="proj-header">
-        <img ngSrc="images/luna.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/luna.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">Luna Unit Frames (fork)</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -483,14 +493,18 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/luf1.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/luf1.png)'"></div>
+
+          <img ngSrc="images/luf1.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="ui"></mat-icon>
             <div class="carddesc">New cosmetic changes</div>
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/luf2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/luf2.png)'"></div>
+
+          <img ngSrc="images/luf2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="options"></mat-icon>
             <div class="carddesc">Up to 6 buff/debuff slots with interchangeable names</div>
@@ -498,10 +512,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/LunaUnitFrames">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -512,9 +526,9 @@
 
   <div class="bgcolorholder">
     <div class="bgcolor"></div>
-    <div class="projcontainer" id="other potato">
+    <div class="projcontainer" id="matching">
       <div class="proj-header">
-        <img ngSrc="images/anotherpotato.png" class="titleimage" placeholder width="500" height="500" />
+        <img ngSrc="images/pg00.png" class="titleimage" placeholder width="500" height="500"/>
         <div class="title">System level card matching puzzle</div>
       </div>
       <p class="date">2023 - 2024</p>
@@ -528,7 +542,9 @@
       </div>
       <div class="proj-content">
         <div class="squarecard">
-          <img ngSrc="images/pg1.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/pg1.png)'"></div>
+
+          <img ngSrc="images/pg1.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="puzzle"></mat-icon>
             <div class="carddesc">It works</div>
@@ -536,7 +552,9 @@
           </div>
         </div>
         <div class="rectanglecard">
-          <img ngSrc="images/pg2.png" class="contentimage" placeholder width="500" height="500" />
+          <div class="blur-bg" [style.background-image]="'url(images/pg2.png)'"></div>
+
+          <img ngSrc="images/pg2.png" class="contentimage" placeholder width="500" height="500"/>
           <div class="under-image">
             <mat-icon svgIcon="windows"></mat-icon>
             <div class="carddesc">Custom native context menu</div>
@@ -545,10 +563,10 @@
         </div>
       </div>
 
-      <a class="github-link">
+      <a class="github-link" href="https://github.com/h4zm1/SimplePG">
         <div class="link-content">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+               stroke-linecap="round" stroke-linejoin="round">
             <use href="#gitlink"></use>
           </svg>
           Github
@@ -557,10 +575,90 @@
     </div>
   </div>
 </div>
+<div class="bgcolorholder">
+  <div class="bgcolor"></div>
+  <div class="projcontainer" id="neon">
+    <div class="proj-header">
+      <img ngSrc="images/neon vs theme.jpg" class="titleimage" placeholder width="500" height="500"/>
+      <div class="title">Cyberpunk theme</div>
+    </div>
+    <p class="date">2023 - 2024</p>
+    <p class="desc">One of the top rated Neon dark theme for visual studio 2019-22</p>
+    <div class="tags">
+      <button>Visual Studio theme</button>
+      <button>XML</button>
+    </div>
+    <div class="proj-content">
+      <div class="squarecard">
+        <div class="blur-bg" [style.background-image]="'url(images/cp2.png)'"></div>
+        <img ngSrc="images/cp2.png" class="contentimage" placeholder width="500" height="500"/>
+        <div class="under-image">
+          <mat-icon svgIcon="store"></mat-icon>
+          <div class="carddesc">One of the top rated themes</div>
+        </div>
+      </div>
+      <div class="rectanglecard">
+        <div class="blur-bg" [style.background-image]="'url(images/cp4.png)'"></div>
+        <img ngSrc="images/cp4.png" class="contentimage" placeholder width="500" height="500"/>
+        <div class="under-image">
+          <mat-icon svgIcon="browser"></mat-icon>
+          <div class="carddesc">Available on visual studio marketplace</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="github-link" href="https://github.com/h4zm1/Cyberpunk-Theme">
+      <div class="link-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <use href="#gitlink"></use>
+        </svg>
+        Github
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="bgcolorholder">
+  <div class="bgcolor"></div>
+  <div class="projcontainer" id="portfolio">
+    <div class="proj-header">
+      <img ngSrc="images/portfolio.png" class="titleimage-withbg" placeholder width="500" height="500"/>
+      <div class="title">Hazmi's Portfolio</div>
+    </div>
+    <p class="date">2025</p>
+    <p class="desc">You are looking at it right now</p>
+    <div class="tags">
+      <button>Angular</button>
+      <button>Angular Material</button>
+      <button>SSR</button>
+    </div>
+    <div class="proj-content">
+      <div class="squarecard">
+        <div class="blur-bg" [style.background-image]="'url(images/pf1.png)'"></div>
+        <img ngSrc="images/pf1.png" class="contentimage" placeholder width="500" height="500"/>
+        <div class="under-image">
+          <div class="carddesc" style="padding-top: 1rem">Scan for magic trick</div>
+          <div class="image-desc">Surprise surprise</div>
+        </div>
+      </div>
+    </div>
+
+    <a class="github-link">
+      <div class="link-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <use href="#gitlink"></use>
+        </svg>
+        Github
+      </div>
+    </a>
+  </div>
+</div>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
   <symbol id="gitlink" viewBox="0 0 24 24" fill="none" stroke="currentColor">
     <path
-      d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+      d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/>
   </symbol>
 </svg>
