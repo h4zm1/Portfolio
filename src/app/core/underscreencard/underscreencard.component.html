@@ -10,7 +10,7 @@
         </svg>
       </div>
       <h1>Below are my projects ;)</h1>
-      <a>
+      <a  href="mailto:mosbah.hazmi@gmail.com">
         <button class="mail">
           <div class="mailcontent">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -25,21 +25,12 @@
     </div>
     <div class="stars">
       <div class="star"></div>
-      <div class="meteor-1"></div>
-      <div class="meteor-2"></div>
-      <div class="meteor-3"></div>
-      <div class="meteor-4"></div>
-      <div class="meteor-5"></div>
-      <div class="meteor-6"></div>
-      <div class="meteor-7"></div>
-      <div class="meteor-8"></div>
-      <div class="meteor-9"></div>
-      <div class="meteor-10"></div>
-      <div class="meteor-11"></div>
-      <div class="meteor-12"></div>
-      <div class="meteor-13"></div>
-      <div class="meteor-14"></div>
-      <div class="meteor-15"></div>
+      @for (meteor of meteors; track meteor.id) {
+        <div
+          class="meteor"
+          [ngStyle]="meteor.style"
+        ></div>
+      }
     </div>
 
   </div>

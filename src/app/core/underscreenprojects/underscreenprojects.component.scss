@@ -160,7 +160,11 @@ button {
   position: relative;
   overflow: hidden;
 }
-
+.doubleBtnHolder{
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
 .blur-bg {
   position: absolute;
   inset: 26px;
@@ -227,7 +231,16 @@ button {
   align-self: center;
   padding-top: 2rem;
 }
-
+.normal-link{
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  display: block;
+  width: fit-content;
+  align-self: center;
+  padding-top: 2rem;
+  text-decoration-line: none;
+}
 .link-content {
   display: flex;
   gap: .5rem;
