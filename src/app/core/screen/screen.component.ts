@@ -74,7 +74,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
       if (scrollPosition) {
         window.scrollTo(0, parseInt(scrollPosition, 10));
       }
-      console.log("scroll position oninit " + this.getScrollPosition());
+      // console.log("scroll position oninit " + this.getScrollPosition());
       this.updateTransformScreen(this.getScrollPosition())
       const scrollEvent = fromEvent(window, "scroll").pipe(
         // throttleTime(1000),
@@ -220,7 +220,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
   screenTransformCounter = 0
 
   constructor(private el: ElementRef) {
-    console.log("platformID " + this.platformID)
+    // console.log("platformID " + this.platformID)
   }
 
 
@@ -256,7 +256,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     }
 
 
-    console.log(" scaleValue " + scaleValue + "ROTATION " + rotateValue)
+    // console.log(" scaleValue " + scaleValue + "ROTATION " + rotateValue)
     // console.log(" translate " + translateValue)
     const transformValue = "scale(" + scaleValue + ") rotateX(" + rotateValue + "deg) " +
       "translateZ(0px)";
@@ -297,7 +297,7 @@ export class ScreenComponent implements OnInit, OnDestroy {
     if (translateValue < -102)
       return
 
-    console.log(" TITLE--TRANSLATE " + translateValue)
+    // console.log(" TITLE--TRANSLATE " + translateValue)
     const transformValue = "scale(" + 1 + ") rotateX(" + 0 + "deg) " +
       "translateY(" + translateValue + "px)";
     const titleElement = this.el.nativeElement.querySelector('.screenTitle');
