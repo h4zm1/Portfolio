@@ -5,7 +5,10 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-import { getAnalytics } from './src/app/features/analytics/analytics';
+import {
+  clearCache,
+  getAnalytics,
+} from './src/app/features/analytics/analytics';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -18,17 +21,22 @@ export function app(): express.Express {
   const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
-  server.set('views', browserDistFolder);// config express to serve html from browser folder
+  server.set('views', browserDistFolder); // config express to serve html from browser folder
 
   //calling analytics
   server.get('/api/analytics', getAnalytics);
+  server.delete('/api/analytics/cache', clearCache);
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('**', express.static(browserDistFolder, {//serve static files and browser cache them 1 year
-    maxAge: '1y',
-    index: 'index.html',
-  }));
+  server.get(
+    '**',
+    express.static(browserDistFolder, {
+      //serve static files and browser cache them 1 year
+      maxAge: '1y',
+      index: 'index.html',
+    }),
+  );
 
   //ssr magic
   //1: request come from api/events

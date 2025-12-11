@@ -1,8 +1,8 @@
-import { Request, Response } from 'express'
-import NodeCache from 'node-cache'
+import { Request, Response } from 'express';
+import NodeCache from 'node-cache';
 
 //cache for 1 hour
-const cache = new NodeCache({ stdTTL: 3600 })
+const cache = new NodeCache({ stdTTL: 3600 });
 
 export async function getAnalytics(req: Request, res: Response) {
   const days = parseInt(req.query['days'] as string) || 30;
@@ -14,7 +14,9 @@ export async function getAnalytics(req: Request, res: Response) {
   //calculate date range
   const endDate = new Date().toISOString().split('T')[0];
   // Date.now() return milliseconds
-  const startDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+  const startDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split('T')[0];
 
   //graphQL query for cloudflare ap
   const query = `{
@@ -32,32 +34,37 @@ export async function getAnalytics(req: Request, res: Response) {
     }
   }`;
   try {
-    const response = await fetch('https://api.cloudflare.com/client/v4/graphql', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env['CLOUDFLARE_API_TOKEN']}`,
-        'Content-Type': 'application/json'
+    const response = await fetch(
+      'https://api.cloudflare.com/client/v4/graphql',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env['CLOUDFLARE_API_TOKEN']}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
       },
-      body: JSON.stringify({ query })
-    });
+    );
 
-    const data = await response.json()
+    const data = await response.json();
     //transform response to line chart
-    const chartData = data.data.viewer.zones[0]?.httpRequests1dGroups.map(
-      (g: any) => ({
+    const chartData =
+      data.data.viewer.zones[0]?.httpRequests1dGroups.map((g: any) => ({
         name: new Date(g.dimensions.date).toLocaleDateString('en-US', {
           month: 'short',
-          day: 'numeric'
+          day: 'numeric',
         }),
-        value: g.uniq.uniques
-      })
-    ) || [];
+        value: g.uniq.uniques,
+      })) || [];
 
     //cache it
     cache.set('analytics-${days}', chartData);
     return res.json(chartData);
-
   } catch (error) {
     return res.status(500).json({ error: 'failed to fetch analytics!!' });
   }
+}
+export function clearCache(req: Request, res: Response) {
+  cache.flushAll();
+  return res.json({ message: 'cache cleared' });
 }
