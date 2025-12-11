@@ -1,0 +1,15 @@
+<div class="chart-wrapper">
+  @if (loading) {
+    <p>Loading...</p>
+  } @else if (isBrowser && data.length) {
+    <div class="chart-container">
+      <ngx-charts-line-chart
+        [results]="[{ name: 'Visitors', series: data }]"
+        [xAxis]="true"
+        [yAxis]="true"
+        [scheme]="colorScheme"
+      >
+      </ngx-charts-line-chart>
+    </div>
+  }
+</div>

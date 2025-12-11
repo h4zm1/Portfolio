@@ -2,20 +2,39 @@
   <div class="gradientborder"></div>
   <div class="starscard">
     <div class="innerCard">
-
       <div class="indicatorborder">
-        <svg class="indicator" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-          stroke="lightgray">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25"></path>
+        <svg
+          class="indicator"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="lightgray"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25"
+          ></path>
         </svg>
       </div>
-      <h1>Below are my projects ;)</h1>
-      <a  href="mailto:mosbah.hazmi@gmail.com">
+      <h1>Below are my projects :)</h1>
+      <a href="mailto:mosbah.hazmi@gmail.com">
         <button class="mail">
           <div class="mailcontent">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+              ></path>
               <path d="M3 7l9 6l9 -6"></path>
             </svg>
             Contact Me
@@ -26,12 +45,8 @@
     <div class="stars">
       <div class="star"></div>
       @for (meteor of meteors; track meteor.id) {
-        <div
-          class="meteor"
-          [ngStyle]="meteor.style"
-        ></div>
+        <div class="meteor" [ngStyle]="meteor.style"></div>
       }
     </div>
-
   </div>
 </div>

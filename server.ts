@@ -1,9 +1,11 @@
+import 'dotenv/config';
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr/node';
 import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
+import { getAnalytics } from './src/app/features/analytics/analytics';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -12,19 +14,26 @@ export function app(): express.Express {
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
+  //create ssr engine that convert compoent to html
   const commonEngine = new CommonEngine();
 
   server.set('view engine', 'html');
-  server.set('views', browserDistFolder);
+  server.set('views', browserDistFolder);// config express to serve html from browser folder
 
+  //calling analytics
+  server.get('/api/analytics', getAnalytics);
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('**', express.static(browserDistFolder, {
+  server.get('**', express.static(browserDistFolder, {//serve static files and browser cache them 1 year
     maxAge: '1y',
     index: 'index.html',
   }));
 
+  //ssr magic
+  //1: request come from api/events
+  //2: angular render page on the server
+  //3: return full html
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
@@ -43,7 +52,7 @@ export function app(): express.Express {
 
   return server;
 }
-
+// stat server on prot 4000 (or env if configured)
 function run(): void {
   const port = process.env['PORT'] || 4000;
 

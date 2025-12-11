@@ -8,11 +8,13 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from "@angular/common";
 import { MatIconModule } from '@angular/material/icon';
+import { VisitorChartComponent } from '../../features/analytics/visitor-chart.component';
 
 @Component({
   selector: 'app-underscreenprojects',
   imports: [
     NgOptimizedImage,
+    VisitorChartComponent,
     MatIconModule
   ],
   templateUrl: './underscreenprojects.component.html',
