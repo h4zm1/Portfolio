@@ -29,6 +29,11 @@ export class VisitorChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    // run api calls only on browser not in server
+    if (!this.isBrowser) {
+      this.loading = false;
+      return;
+    }
     this.http.get<any[]>('/api/analytics?days=30').subscribe({
       next: (res) => {
         // console.log("ngoninit visitor2")
