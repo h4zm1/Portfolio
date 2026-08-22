@@ -8,7 +8,7 @@ export async function getAnalytics(req: Request, res: Response) {
   const days = parseInt(req.query['days'] as string) || 30;
 
   //check cache first
-  const cached = cache.get('analytics-${days}');
+  const cached = cache.get(`analytics-${days}`);
   if (cached) return res.json(cached);
 
   //calculate date range
