@@ -5,7 +5,7 @@
   flex-direction: column;
   padding: 2rem 2rem;
   border-radius: 40px;
-  background-color: rgb(17 24 39/1);
+  background-color: #070a10db;
   margin-bottom: 50px;
   position: relative; //to make the gradient bg show up behind
 }
@@ -17,7 +17,11 @@
   width: 70px;
   height: 1px;
   transform: rotate(-45deg);
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.38),
+    rgba(255, 255, 255, 0)
+  );
   animation: meteor var(--duration) linear infinite;
 
   // small glowing head of the meteor
@@ -73,7 +77,6 @@ a {
   // transform: scale(0.9, 0.75);
   align-self: center;
   justify-self: center;
-
 }
 
 .mail {
@@ -84,17 +87,21 @@ a {
 
 .mailcontent {
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
   border-radius: 1.5rem;
-  padding: .5rem 1rem;
-  background: linear-gradient(#000 0 0) padding-box, linear-gradient(to right, #d946ef, #06b6d4) border-box;
+  padding: 0.5rem 1rem;
+  background:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(to right, #d946ef, #06b6d4) border-box;
   color: #fff;
   border: 3px solid transparent;
   align-items: center;
 }
 
 .mailcontent:hover {
-  background: padding-box, linear-gradient(to right, #d946ef, #06b6d4) border-box;
+  background:
+    padding-box,
+    linear-gradient(to right, #d946ef, #06b6d4) border-box;
 }
 
 h1 {
@@ -117,9 +124,9 @@ h1 {
 }
 
 .indicator {
-  width: .5rem;
-  height: .5rem;
-  padding-bottom: .2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  padding-bottom: 0.2rem;
 }
 
 @media (max-width: 768px) {

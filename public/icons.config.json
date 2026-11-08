@@ -26,5 +26,10 @@
   "window": "icons/window.svg",
   "windows": "icons/windows.svg",
   "layout": "icons/layout.svg",
-  "puzzle": "icons/puzzle.svg"
+  "puzzle": "icons/puzzle.svg",
+  "editor": "icons/editor.svg",
+  "extension": "icons/extension.svg",
+  "job": "icons/job.svg",
+  "resume": "icons/resume.svg",
+  "chart": "icons/chart.svg"
 }

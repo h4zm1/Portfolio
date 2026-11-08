@@ -164,7 +164,12 @@ button {
   position: relative;
   overflow: hidden;
 }
-
+.full-width {
+  grid-column: span 3 / span 2;
+  img {
+    object-position: top;
+  }
+}
 .doubleBtnHolder {
   display: flex;
   gap: 3rem;
@@ -280,5 +285,7 @@ button {
   // force rectangles to be squares on small screens
   .rectanglecard {
     grid-column: span 1 / span 1;
+  }
+  .full-width {
   }
 }
